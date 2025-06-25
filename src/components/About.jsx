@@ -7,14 +7,21 @@ export default function About() {
     "RESTful APIs", "Postman", "Git", "GitHub", "VS Code"
   ];
 
-  // Shake + scale animation
-  const shakeScale = {
+  // Glowing + shake + scale animation
+  const glowingSkill = {
     animate: {
-      rotate: [0, -5, 5, -5, 5, 0],
-      scale: [1, 1.05, 1, 1.05, 1],
+      rotate: [0, -3, 3, -3, 3, 0],
+      scale: [1, 1.05, 1],
+      boxShadow: [
+        "0 0 0px #A855F7",
+        "0 0 5px #A855F7",
+        "0 0 12px #A855F7",
+        "0 0 5px #A855F7",
+        "0 0 0px #A855F7"
+      ],
       transition: {
         repeat: Infinity,
-        duration: 1.6,
+        duration: 2,
         ease: 'easeInOut',
       },
     },
@@ -74,8 +81,8 @@ export default function About() {
             {skills.map((skill, index) => (
               <motion.span
                 key={index}
-                {...shakeScale}
-                className="bg-purple-100 text-purple-800 border border-purple-300 px-4 py-2 rounded-xl text-sm font-semibold shadow-sm transition transform hover:scale-110 hover:shadow-md"
+                {...glowingSkill}
+                className="bg-white text-purple-800 border border-purple-300 px-4 py-2 rounded-xl text-sm font-semibold shadow-md transition transform hover:scale-110"
               >
                 {skill}
               </motion.span>
