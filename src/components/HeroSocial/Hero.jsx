@@ -87,6 +87,31 @@ const Hero = () => {
             As a passionate learner, programmer, and aspiring front end web developer, I thrive on the excitement of building and creating in the digital realm. I enjoy creating beautiful websites because I feel pleasure to create something that not only looks good but also provides value to the users.
           </Typography>
 
+       <Button
+  component="a"
+  href="/CV.pdf"
+  download="Chandrashehar_Billade.pdf"
+  variant="contained"
+  sx={{
+    
+    color: 'white',
+    fontWeight: 'bold',
+    px: 3,
+    py: 1.5,
+    borderRadius: 3,
+    boxShadow: 2,
+    animation: `${fadeInUp} 1s ease-out 0.6s forwards`,
+    opacity: 0,
+    transition: 'transform 0.3s ease',
+    '&:hover': {
+      backgroundColor: 'darkviolet',
+      transform: 'scale(1.05)',
+    },
+  }}
+>
+  Download Resume
+</Button>
+
           <Button
             variant="contained"
             size="large"
@@ -102,6 +127,7 @@ const Hero = () => {
           >
             View Projects
           </Button>
+
         </Stack>
       </Container>
     </Box>
