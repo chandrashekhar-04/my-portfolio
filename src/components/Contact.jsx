@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-export default function Contact() {
+export default function Contact({ darkMode }) {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -44,7 +44,11 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="px-6 py-16 bg-gradient-to-br from-white via-purple-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500"
+      className={`px-6 py-16 transition-colors duration-500 ${
+        darkMode
+          ? 'bg-gray-900 text-gray-200'
+          : 'bg-gradient-to-br from-white via-purple-50 to-white text-gray-800'
+      }`}
     >
       {/* Section Heading */}
       <motion.div
@@ -54,11 +58,17 @@ export default function Contact() {
         viewport={{ once: true }}
         className="text-center mb-12 max-w-xl mx-auto"
       >
-        <h2 className="text-4xl sm:text-5xl font-extrabold uppercase text-black dark:text-white tracking-wide">
+        <h2 className={`text-4xl sm:text-5xl font-extrabold uppercase tracking-wide ${
+          darkMode ? 'text-white' : 'text-black'
+        }`}>
           Contact
         </h2>
-        <div className="mt-3 w-16 h-1 mx-auto bg-purple-600 dark:bg-purple-400 rounded-full" />
-        <p className="mt-4 text-gray-700 dark:text-gray-300 text-lg sm:text-xl">
+        <div className={`mt-3 w-16 h-1 mx-auto rounded-full ${
+          darkMode ? 'bg-purple-400' : 'bg-purple-600'
+        }`} />
+        <p className={`mt-4 text-lg sm:text-xl ${
+          darkMode ? 'text-gray-300' : 'text-gray-700'
+        }`}>
           Feel free to reach out by filling the form below.
         </p>
       </motion.div>
@@ -69,7 +79,11 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 shadow-xl rounded-3xl p-8 transition-colors duration-500"
+        className={`max-w-3xl mx-auto shadow-xl rounded-3xl p-8 transition-colors duration-500 ${
+          darkMode
+            ? 'bg-gray-800 bg-opacity-90'
+            : 'bg-white bg-opacity-90'
+        }`}
       >
         <form onSubmit={handleSubmit} className="space-y-6">
           {["name", "email", "message"].map((field, i) => (
@@ -80,7 +94,9 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: i * 0.2 }}
               viewport={{ once: true }}
             >
-              <label className="block mb-2 text-gray-800 dark:text-gray-200 font-semibold capitalize">
+              <label className={`block mb-2 font-semibold capitalize ${
+                darkMode ? 'text-gray-200' : 'text-gray-800'
+              }`}>
                 {field}
               </label>
               {field === "message" ? (
@@ -90,7 +106,11 @@ export default function Contact() {
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:text-gray-200 transition-all duration-300 hover:shadow-lg"
+                  className={`w-full px-5 py-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-600 transition-all duration-300 hover:shadow-lg ${
+                    darkMode
+                      ? 'bg-gray-700 text-gray-200 border-gray-600'
+                      : 'bg-white text-gray-800 border-gray-300'
+                  } border`}
                   placeholder="Type your message..."
                 />
               ) : (
@@ -100,7 +120,11 @@ export default function Contact() {
                   required
                   value={formData[field]}
                   onChange={handleChange}
-                  className="w-full px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:text-gray-200 transition-all duration-300 hover:shadow-lg"
+                  className={`w-full px-5 py-3 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-600 transition-all duration-300 hover:shadow-lg ${
+                    darkMode
+                      ? 'bg-gray-700 text-gray-200 border-gray-600'
+                      : 'bg-white text-gray-800 border-gray-300'
+                  } border`}
                   placeholder={field === "email" ? "you@example.com" : "Your full name"}
                 />
               )}
@@ -115,7 +139,11 @@ export default function Contact() {
           >
             <button
               type="submit"
-              className="w-full bg-purple-700 dark:bg-purple-600 text-white py-3 rounded-2xl hover:bg-purple-800 dark:hover:bg-purple-500 transition duration-300 shadow-md hover:shadow-lg font-semibold"
+              className={`w-full py-3 rounded-2xl transition duration-300 shadow-md hover:shadow-lg font-semibold text-white ${
+                darkMode
+                  ? 'bg-purple-600 hover:bg-purple-500'
+                  : 'bg-purple-700 hover:bg-purple-800'
+              }`}
             >
               Send Message
             </button>
@@ -125,7 +153,9 @@ export default function Contact() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center text-sm text-gray-700 dark:text-gray-300 mt-4"
+              className={`text-center text-sm mt-4 ${
+                darkMode ? 'text-gray-300' : 'text-gray-700'
+              }`}
             >
               {status}
             </motion.p>

@@ -6,6 +6,7 @@ import Container from '@mui/material/Container';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import SocialSidebar from './SocialSideBar';
 
 /** ===== Animations ===== */
 const colorGradient = keyframes`
@@ -57,6 +58,9 @@ const Hero = ({ darkMode }) => {
         transition: 'background 0.5s',
       }}
     >
+      {/* Social Sidebar */}
+      <SocialSidebar darkMode={darkMode} />
+
       {/* Floating Blobs */}
       <Box sx={{ position: 'absolute', inset: 0, zIndex: 0 }}>
         <Box

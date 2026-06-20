@@ -32,12 +32,15 @@ export default function ResponsiveAppBar({ darkMode, setDarkMode }) {
       sx={{
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        backgroundColor: darkMode ? 'rgba(30,30,30,0.8)' : 'rgba(255,255,255,0.8)',
-        boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
+        backgroundColor: darkMode ? 'rgba(20,20,20,0.95)' : 'rgba(255,255,255,0.95)',
+        boxShadow: darkMode 
+          ? '0 2px 12px rgba(0,0,0,0.3)' 
+          : '0 2px 12px rgba(0,0,0,0.08)',
         minHeight: '100px',
         justifyContent: 'center',
         zIndex: 1100,
-        transition: 'background-color 0.5s',
+        transition: 'all 0.5s ease',
+        borderBottom: darkMode ? '1px solid rgba(139, 92, 246, 0.2)' : '1px solid rgba(139, 92, 246, 0.1)',
       }}
     >
       <Container maxWidth="xl">

@@ -6,26 +6,38 @@ import Projects from './components/Projects.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
 import Education from './components/Education.jsx';
+import Layout from './components/Layout.jsx';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const stored = localStorage.getItem('theme');
+      return stored === 'dark';
+    }
+    return false;
+  });
 
   useEffect(() => {
-    if (darkMode) document.documentElement.classList.add('dark');
-    else document.documentElement.classList.remove('dark');
+    const root = document.documentElement;
+    if (darkMode) {
+      root.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      root.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
   }, [darkMode]);
 
-
   return (
-    <>
+    <Layout darkMode={darkMode}>
       <ResponsiveAppBar darkMode={darkMode} setDarkMode={setDarkMode} />
       <HeroSocial darkMode={darkMode} />
       <About darkMode={darkMode} />
       <Education darkMode={darkMode} />
       <Projects darkMode={darkMode} />
       <Contact darkMode={darkMode} />
-      <Footer />
-    </>
+      <Footer darkMode={darkMode} />
+    </Layout>
   );
 }
 

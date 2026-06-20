@@ -1,20 +1,20 @@
 import { motion } from 'framer-motion';
 
-export default function Education() {
+export default function Education({ darkMode }) {
   const educationData = [
     {
       degree: "Bachelor of Computer Applications (BCA)",
-      school: "XYZ University",
-      year: "2021 – 2024",
+      school: "Sandip University",
+      year: "2022 – 2025",
       details:
-        "Focused on full-stack development, data structures, algorithms, and modern web technologies.",
+        "Focused on full-stack development with React.js, Node.js, Express.js and MongoDB",
     },
     {
-      degree: "High School (Science – PCM)",
-      school: "ABC Senior Secondary School",
-      year: "2019 – 2021",
+      degree: "HSC",
+      school: "L V N Sonawane Jr. College",
+      year: "2021 – 2022",
       details:
-        "Completed higher secondary education with specialization in Physics, Chemistry & Mathematics.",
+        "Completed higher secondary education in PCMB",
     },
   ];
 
@@ -39,7 +39,11 @@ export default function Education() {
   return (
     <section
       id="education"
-      className="px-6 py-16 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500"
+      className={`px-6 py-16 transition-colors duration-500 ${
+        darkMode
+          ? 'bg-gray-900 text-gray-200'
+          : 'bg-white text-gray-800'
+      }`}
     >
       {/* Header */}
       <motion.div
@@ -49,11 +53,17 @@ export default function Education() {
         viewport={{ once: true }}
         className="text-center max-w-3xl mx-auto"
       >
-        <h2 className="text-4xl sm:text-5xl font-extrabold text-black dark:text-white uppercase tracking-wide">
+        <h2 className={`text-4xl sm:text-5xl font-extrabold uppercase tracking-wide ${
+          darkMode ? 'text-white' : 'text-black'
+        }`}>
           Education
         </h2>
-        <div className="mt-3 w-20 h-1 mx-auto bg-purple-600 dark:bg-purple-400 rounded-full" />
-        <p className="text-gray-700 dark:text-gray-300 text-lg sm:text-xl mt-4">
+        <div className={`mt-3 w-20 h-1 mx-auto rounded-full ${
+          darkMode ? 'bg-purple-400' : 'bg-purple-600'
+        }`} />
+        <p className={`text-lg sm:text-xl mt-4 ${
+          darkMode ? 'text-gray-300' : 'text-gray-700'
+        }`}>
           My academic journey and the foundation behind my development career.
         </p>
       </motion.div>
@@ -68,16 +78,30 @@ export default function Education() {
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
             {...cardGlow}
-            className="bg-white dark:bg-gray-800 border border-purple-300 dark:border-purple-700 rounded-3xl shadow-xl hover:shadow-2xl transition-shadow duration-300 p-8"
+            className={`border rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-300 p-8 ${
+              darkMode
+                ? 'bg-gray-800 border-purple-700'
+                : 'bg-white border-purple-300'
+            }`}
           >
-            <h3 className="text-2xl font-bold text-purple-800 dark:text-purple-400 mb-2">
+            <h3 className={`text-2xl font-bold mb-2 ${
+              darkMode ? 'text-purple-400' : 'text-purple-800'
+            }`}>
               {edu.degree}
             </h3>
 
-            <p className="text-purple-600 dark:text-purple-300 font-semibold">{edu.school}</p>
-            <p className="text-gray-500 dark:text-gray-400 text-sm mb-4">{edu.year}</p>
+            <p className={`font-semibold ${
+              darkMode ? 'text-purple-300' : 'text-purple-600'
+            }`}>{edu.school}</p>
+            <p className={`text-sm mb-4 ${
+              darkMode ? 'text-gray-400' : 'text-gray-500'
+            }`}>{edu.year}</p>
 
-            <p className="text-gray-700 dark:text-gray-200 leading-relaxed bg-white dark:bg-gray-700 bg-opacity-80 dark:bg-opacity-80 p-4 rounded-xl transition-colors duration-500">
+            <p className={`leading-relaxed bg-opacity-80 p-4 rounded-xl transition-colors duration-500 ${
+              darkMode
+                ? 'text-gray-200 bg-gray-700'
+                : 'text-gray-700 bg-white'
+            }`}>
               {edu.details}
             </p>
           </motion.div>

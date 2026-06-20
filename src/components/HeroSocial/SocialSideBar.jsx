@@ -25,10 +25,10 @@ const hoverGlow = keyframes`
   50% { filter: drop-shadow(0 0 10px #8b5cf6); }
 `;
 
-export default function SocialSidebar() {
+export default function SocialSidebar({ darkMode }) {
   const iconStyle = {
     fontSize: 32,
-    color: '#212121',
+    color: darkMode ? '#9ca3af' : '#212121',
     transition: 'transform 0.3s, color 0.3s',
     '&:hover': {
       color: '#8b5cf6',
@@ -61,8 +61,9 @@ export default function SocialSidebar() {
         p: 1,
         borderRadius: '0 12px 12px 0',
         zIndex: 2,
-        backgroundColor: 'rgba(255,255,255,0.9)',
+        backgroundColor: darkMode ? 'rgba(31,41,55,0.9)' : 'rgba(255,255,255,0.9)',
         backdropFilter: 'blur(6px)',
+        transition: 'background-color 0.5s ease',
       }}
     >
       {socialLinks.map((link, idx) => (

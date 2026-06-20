@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 
-export default function Projects() {
+export default function Projects({ darkMode }) {
   const projects = [
     {
       title: "PrimeCart",
@@ -41,7 +41,11 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="px-6 py-20 bg-white dark:bg-gray-900 text-gray-800 dark:text-gray-200"
+      className={`px-6 py-20 transition-colors duration-500 ${
+        darkMode
+          ? 'bg-gray-900 text-gray-200'
+          : 'bg-white text-gray-800'
+      }`}
     >
       {/* Header */}
       <motion.div
@@ -51,12 +55,18 @@ export default function Projects() {
         viewport={{ once: true }}
         className="text-center mb-20"
       >
-        <h1 className="text-4xl sm:text-5xl font-extrabold uppercase text-black dark:text-white tracking-wide">
+        <h1 className={`text-4xl sm:text-5xl font-extrabold uppercase tracking-wide ${
+          darkMode ? 'text-white' : 'text-black'
+        }`}>
           Projects
         </h1>
-        <div className="mt-3 w-16 h-1 mx-auto bg-purple-600 dark:bg-purple-400 rounded-full" />
-        <p className="text-gray-700 dark:text-gray-300 mt-4 max-w-2xl mx-auto text-lg sm:text-xl">
-          Some of my featured projects, showcasing my skills in full-stack development and UI/UX design.
+        <div className={`mt-3 w-16 h-1 mx-auto rounded-full ${
+          darkMode ? 'bg-purple-400' : 'bg-purple-600'
+        }`} />
+        <p className={`mt-4 max-w-2xl mx-auto text-lg sm:text-xl ${
+          darkMode ? 'text-gray-300' : 'text-gray-700'
+        }`}>
+          Some of my featured projects, showcasing my skills in full-stack development.
         </p>
       </motion.div>
 
@@ -115,10 +125,14 @@ export default function Projects() {
               viewport={{ once: true }}
               className="w-full lg:w-1/2 text-center lg:text-left flex flex-col gap-4"
             >
-              <h3 className="text-3xl sm:text-4xl font-bold text-purple-800 dark:text-purple-400">
+              <h3 className={`text-3xl sm:text-4xl font-bold ${
+                darkMode ? 'text-purple-400' : 'text-purple-800'
+              }`}>
                 {project.title}
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
+              <p className={`text-lg leading-relaxed ${
+                darkMode ? 'text-gray-300' : 'text-gray-700'
+              }`}>
                 {project.description}
               </p>
               <div className="flex gap-4 flex-wrap mt-4 justify-center lg:justify-start">

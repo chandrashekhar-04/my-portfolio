@@ -1,1 +1,36 @@
+/* Dark Mode Styles */
+:root {
+  color-scheme: light;
+}
 
+html.dark {
+  color-scheme: dark;
+}
+
+/* Smooth transitions for dark mode */
+html {
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+html.dark {
+  background-color: #111827;
+  color: #f3f4f6;
+}
+
+/* Ensure scrollbar respects dark mode */
+html.dark ::-webkit-scrollbar {
+  width: 12px;
+}
+
+html.dark ::-webkit-scrollbar-track {
+  background: #1f2937;
+}
+
+html.dark ::-webkit-scrollbar-thumb {
+  background: #6b7280;
+  border-radius: 6px;
+}
+
+html.dark ::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
