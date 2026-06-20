@@ -12,9 +12,11 @@ function App() {
   const [darkMode, setDarkMode] = useState(() => {
     if (typeof window !== 'undefined') {
       const stored = localStorage.getItem('theme');
+      // Default to dark when no preference is stored
+      if (stored === null) return true;
       return stored === 'dark';
     }
-    return false;
+    return true;
   });
 
   useEffect(() => {

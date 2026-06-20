@@ -7,7 +7,7 @@ export default function Projects({ darkMode }) {
       title: "PrimeCart",
       description:
         "PrimeCart is a grocery delivery web app providing a clean interface for both customers and small businesses. It features real-time product listings and an intuitive checkout process.",
-      liveLink: "https://primecart-mocha.vercel.app",
+      liveLink: "https://prime-cart-01.vercel.app",
       slidingImages: true,
     },
     {
