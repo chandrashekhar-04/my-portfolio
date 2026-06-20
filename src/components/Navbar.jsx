@@ -9,39 +9,35 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuIcon from '@mui/icons-material/Menu';
 import Container from '@mui/material/Container';
 import Button from '@mui/material/Button';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
 
 const pages = ['Home', 'About', 'Projects', 'Contact'];
 
-function ResponsiveAppBar() {
+export default function ResponsiveAppBar({ darkMode, setDarkMode }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
+  const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
+  const handleCloseNavMenu = () => setAnchorElNav(null);
 
   const handleScrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId.toLowerCase());
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (section) section.scrollIntoView({ behavior: 'smooth' });
     handleCloseNavMenu();
   };
 
   return (
     <AppBar
-      position="static"
+      position="sticky"
       sx={{
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
-        backgroundColor: 'rgba(255, 255, 255, 0.8)',
+        backgroundColor: darkMode ? 'rgba(30,30,30,0.8)' : 'rgba(255,255,255,0.8)',
         boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
         minHeight: '100px',
         justifyContent: 'center',
         zIndex: 1100,
+        transition: 'background-color 0.5s',
       }}
     >
       <Container maxWidth="xl">
@@ -65,7 +61,7 @@ function ResponsiveAppBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.2rem',
-              color: 'black',
+              color: darkMode ? 'white' : 'black',
               textDecoration: 'none',
               display: { xs: 'none', md: 'flex' },
               alignItems: 'center',
@@ -74,37 +70,31 @@ function ResponsiveAppBar() {
             CHANDU
           </Typography>
 
-          {/* Mobile Menu Icon */}
-          <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-            <IconButton
-              size="large"
-              aria-label="navigation menu"
-              onClick={handleOpenNavMenu}
-              sx={{ color: 'black' }}
-            >
+          {/* Mobile Menu */}
+          <Box sx={{ display: { xs: 'flex', md: 'none' }, alignItems: 'center' }}>
+            <IconButton size="large" onClick={handleOpenNavMenu} sx={{ color: darkMode ? 'white' : 'black' }}>
               <MenuIcon />
             </IconButton>
             <Menu
               anchorEl={anchorElNav}
               open={Boolean(anchorElNav)}
               onClose={handleCloseNavMenu}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'left',
-              }}
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'left',
-              }}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+              transformOrigin={{ vertical: 'top', horizontal: 'left' }}
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
                 <MenuItem key={page} onClick={() => handleScrollToSection(page)}>
-                  <Typography textAlign="center" sx={{ color: 'black', fontSize: '18px' }}>
+                  <Typography textAlign="center" sx={{ color: darkMode ? 'white' : 'black', fontSize: '18px' }}>
                     {page}
                   </Typography>
                 </MenuItem>
               ))}
+              <MenuItem onClick={() => setDarkMode(!darkMode)}>
+                <Typography textAlign="center" sx={{ color: darkMode ? 'white' : 'black', fontSize: '18px' }}>
+                  {darkMode ? 'Light Mode' : 'Dark Mode'}
+                </Typography>
+              </MenuItem>
             </Menu>
           </Box>
 
@@ -120,7 +110,7 @@ function ResponsiveAppBar() {
               fontFamily: 'monospace',
               fontWeight: 700,
               letterSpacing: '.2rem',
-              color: 'black',
+              color: darkMode ? 'white' : 'black',
               textDecoration: 'none',
               justifyContent: 'center',
               alignItems: 'center',
@@ -131,14 +121,14 @@ function ResponsiveAppBar() {
             CHANDU
           </Typography>
 
-          {/* Nav Items for Desktop */}
+          {/* Desktop Menu */}
           <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 3, alignItems: 'center' }}>
             {pages.map((page) => (
               <Button
                 key={page}
                 onClick={() => handleScrollToSection(page)}
                 sx={{
-                  color: 'black',
+                  color: darkMode ? 'white' : 'black',
                   textTransform: 'none',
                   fontSize: '18px',
                   fontWeight: 500,
@@ -147,11 +137,14 @@ function ResponsiveAppBar() {
                 {page}
               </Button>
             ))}
+
+            {/* Dark Mode Button */}
+            <IconButton onClick={() => setDarkMode(!darkMode)} sx={{ color: darkMode ? 'white' : 'black' }}>
+              {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
           </Box>
         </Toolbar>
       </Container>
     </AppBar>
   );
 }
-
-export default ResponsiveAppBar;

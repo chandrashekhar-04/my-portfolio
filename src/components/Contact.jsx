@@ -44,11 +44,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="px-6 py-16 bg-cover bg-center bg-no-repeat"
-      style={{
-        backgroundImage:
-          "url('https://static.vecteezy.com/system/resources/previews/010/405/542/non_2x/modern-white-abstract-background-white-abstract-use-for-business-corporate-institution-poster-template-party-festive-seminar-white-futuristic-gradient-eps10-illustration-free-vector.jpg')",
-      }}
+      className="px-6 py-16 bg-gradient-to-br from-white via-purple-50 to-white dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-200 transition-colors duration-500"
     >
       {/* Section Heading */}
       <motion.div
@@ -56,13 +52,13 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="text-center mb-12 max-w-xl mx-auto backdrop-blur-md"
+        className="text-center mb-12 max-w-xl mx-auto"
       >
-        <h2 className="text-4xl font-bold uppercase text-gray-900 tracking-wider">
+        <h2 className="text-4xl sm:text-5xl font-extrabold uppercase text-black dark:text-white tracking-wide">
           Contact
         </h2>
-        <div className="mt-2 w-12 h-1 mx-auto bg-purple-700 rounded-full" />
-        <p className="mt-4 text-gray-700 text-base">
+        <div className="mt-3 w-16 h-1 mx-auto bg-purple-600 dark:bg-purple-400 rounded-full" />
+        <p className="mt-4 text-gray-700 dark:text-gray-300 text-lg sm:text-xl">
           Feel free to reach out by filling the form below.
         </p>
       </motion.div>
@@ -73,7 +69,7 @@ export default function Contact() {
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="max-w-3xl mx-auto bg-white bg-opacity-95 shadow-xl rounded-lg p-8"
+        className="max-w-3xl mx-auto bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 shadow-xl rounded-3xl p-8 transition-colors duration-500"
       >
         <form onSubmit={handleSubmit} className="space-y-6">
           {["name", "email", "message"].map((field, i) => (
@@ -84,7 +80,7 @@ export default function Contact() {
               transition={{ duration: 0.5, delay: i * 0.2 }}
               viewport={{ once: true }}
             >
-              <label className="block mb-2 text-gray-700 font-semibold capitalize">
+              <label className="block mb-2 text-gray-800 dark:text-gray-200 font-semibold capitalize">
                 {field}
               </label>
               {field === "message" ? (
@@ -94,9 +90,9 @@ export default function Contact() {
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                  className="w-full px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:text-gray-200 transition-all duration-300 hover:shadow-lg"
                   placeholder="Type your message..."
-                ></textarea>
+                />
               ) : (
                 <input
                   type={field === "email" ? "email" : "text"}
@@ -104,10 +100,8 @@ export default function Contact() {
                   required
                   value={formData[field]}
                   onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
-                  placeholder={
-                    field === "email" ? "you@example.com" : "Your full name"
-                  }
+                  className="w-full px-5 py-3 border border-gray-300 dark:border-gray-600 rounded-2xl focus:outline-none focus:ring-2 focus:ring-purple-600 dark:bg-gray-700 dark:text-gray-200 transition-all duration-300 hover:shadow-lg"
+                  placeholder={field === "email" ? "you@example.com" : "Your full name"}
                 />
               )}
             </motion.div>
@@ -121,7 +115,7 @@ export default function Contact() {
           >
             <button
               type="submit"
-              className="w-full bg-purple-700 text-white py-2 px-4 rounded-lg hover:bg-purple-800 transition duration-300"
+              className="w-full bg-purple-700 dark:bg-purple-600 text-white py-3 rounded-2xl hover:bg-purple-800 dark:hover:bg-purple-500 transition duration-300 shadow-md hover:shadow-lg font-semibold"
             >
               Send Message
             </button>
@@ -131,7 +125,7 @@ export default function Contact() {
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center text-sm text-gray-600 mt-4"
+              className="text-center text-sm text-gray-700 dark:text-gray-300 mt-4"
             >
               {status}
             </motion.p>

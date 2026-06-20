@@ -1,30 +1,32 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import HeroSocial from './components/Herosocial.jsx'
-import About from './components/About.jsx'
+import { useState, useEffect } from 'react';
 import ResponsiveAppBar from './components/Navbar.jsx';
-import Projects from './components/Projects.jsx'
+import HeroSocial from './components/Herosocial.jsx';
+import About from './components/About.jsx';
+import Projects from './components/Projects.jsx';
 import Contact from './components/Contact.jsx';
 import Footer from './components/Footer.jsx';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
+import Education from './components/Education.jsx';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (darkMode) document.documentElement.classList.add('dark');
+    else document.documentElement.classList.remove('dark');
+  }, [darkMode]);
+
 
   return (
     <>
-    <ResponsiveAppBar />
-    <HeroSocial />
-    <About />
-    <Projects />
-    <Contact />
-    <Footer />
+      <ResponsiveAppBar darkMode={darkMode} setDarkMode={setDarkMode} />
+      <HeroSocial darkMode={darkMode} />
+      <About darkMode={darkMode} />
+      <Education darkMode={darkMode} />
+      <Projects darkMode={darkMode} />
+      <Contact darkMode={darkMode} />
+      <Footer />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
