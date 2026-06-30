@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -12,17 +13,35 @@ import Button from '@mui/material/Button';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 
-const pages = ['Home', 'About', 'Projects', 'Contact'];
+const pages = ['Home', 'About', 'Projects', 'Contact', 'Admin'];
 
 export default function ResponsiveAppBar({ darkMode, setDarkMode }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleOpenNavMenu = (event) => setAnchorElNav(event.currentTarget);
   const handleCloseNavMenu = () => setAnchorElNav(null);
 
-  const handleScrollToSection = (sectionId) => {
+  const scrollToSection = (sectionId) => {
     const section = document.getElementById(sectionId.toLowerCase());
     if (section) section.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  const handleNavigation = (sectionId) => {
+    if (sectionId === 'Admin') {
+      navigate('/admin');
+      handleCloseNavMenu();
+      return;
+    }
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => scrollToSection(sectionId), 120);
+    } else {
+      scrollToSection(sectionId);
+    }
+
     handleCloseNavMenu();
   };
 
@@ -87,7 +106,7 @@ export default function ResponsiveAppBar({ darkMode, setDarkMode }) {
               sx={{ display: { xs: 'block', md: 'none' } }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={() => handleScrollToSection(page)}>
+                <MenuItem key={page} onClick={() => handleNavigation(page)}>
                   <Typography textAlign="center" sx={{ color: darkMode ? 'white' : 'black', fontSize: '18px' }}>
                     {page}
                   </Typography>
@@ -129,7 +148,7 @@ export default function ResponsiveAppBar({ darkMode, setDarkMode }) {
             {pages.map((page) => (
               <Button
                 key={page}
-                onClick={() => handleScrollToSection(page)}
+                onClick={() => handleNavigation(page)}
                 sx={{
                   color: darkMode ? 'white' : 'black',
                   textTransform: 'none',
